@@ -315,7 +315,7 @@ public class AutomationTests {
         Assert.assertEquals("Test case : Test Fail",expectedResult,actualResult);
     }
 
-    @Test (priority = 6)
+    @Test (priority = 6) // user should be able to sort the price by high to low
     public void userShouldBeAbleToSortByPriceHighToLow(){
         //click on Computers
         clickElementBy(By.linkText("Computers"));
