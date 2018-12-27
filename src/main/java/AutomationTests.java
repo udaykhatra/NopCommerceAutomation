@@ -26,6 +26,40 @@ public class AutomationTests {
     public void selectBy(By by){
         driver.findElement(by).isSelected();
     }
+    public void registration(){
+        //click on register button
+        clickElementBy(By.linkText("Register"));
+        //select the male gender option
+        clickElementBy(By.id("gender-male"));
+        //enter "MyFirstName" in First name field
+        enterText(By.id("FirstName"),"MyFirstName");
+        //enter "MySurname" in Last name field
+        enterText(By.id("LastName"),"MySurname");
+        //select the value "20" for Day field of Date of Birth
+        Select day = new Select(driver.findElement(By.name("DateOfBirthDay")));
+        day.selectByValue("20");
+        //select the value "May" for the Month field of Date of Birth
+        Select month = new Select(driver.findElement(By.name("DateOfBirthMonth")));
+        month.selectByIndex(5);
+        //select the value "1950" for the year field of Date of Birth
+        Select year = new Select(driver.findElement(By.name("DateOfBirthYear")));
+        year.selectByValue("1950");
+        DateFormat dateFormat = new SimpleDateFormat("DDMMYYYHHMMSS");
+        Date date = new Date();
+        String date1 = dateFormat.format(date);
+        //enter the value "Bhavin@home.com" in email field
+        driver.findElement(By.id("Email")).sendKeys("Bhavin+"+date1+"@home.com");
+        //enter the value "My Company" in the company field
+        enterText(By.id("Company"),"My Company");
+        //tick the Newsletter check box
+        selectBy(By.id("Newsletter"));
+        //enter the value "mypass" in the Password field
+        enterText(By.id("Password"),"mypass");
+        //enter the value "mypass" in the Confirm Password field
+        enterText(By.id("ConfirmPassword"),"mypass");
+        //click on register button
+        clickElementBy(By.id("register-button"));
+    }
     @BeforeMethod //run before every method
     public void openingBrowser(){
         //initializing the chrome driver and passing the url
@@ -43,38 +77,7 @@ public class AutomationTests {
 
     @Test(priority=1)   // first test to run to check user should be able to register successfully
     public void userShouldBeAbleToRegisterSuccessfully(){
-        //click on register button
-        clickElementBy(By.linkText("Register"));
-        //select the male gender option
-        clickElementBy(By.id("gender-male"));
-        //enter "MyFirstName" in First name field
-        enterText(By.id("FirstName"),"MyFirstName");
-        //enter "MySurname" in Last name field
-        enterText(By.id("LastName"),"MySurname");
-        //select the value "20" for Day field of Date of Birth
-        Select day = new Select(driver.findElement(By.name("DateOfBirthDay")));
-        day.selectByValue("20");
-        //select the value "May" for the Month field of Date of Birth
-        Select month = new Select(driver.findElement(By.name("DateOfBirthMonth")));
-        month.selectByIndex(5);
-        //select the value "1950" for the year field of Date of Birth
-        Select year = new Select(driver.findElement(By.name("DateOfBirthYear")));
-        year.selectByValue("1950");
-        DateFormat dateFormat = new SimpleDateFormat("DDMMYYYHHMMSS");
-        Date date = new Date();
-        String date1 = dateFormat.format(date);
-        //enter the value "Bhavin@home.com" in email field
-        driver.findElement(By.id("Email")).sendKeys("Bhavin+"+date1+"@home.com");
-        //enter the value "My Company" in the company field
-        enterText(By.id("Company"),"My Company");
-        //tick the Newsletter check box
-        selectBy(By.id("Newsletter"));
-        //enter the value "mypass" in the Password field
-        enterText(By.id("Password"),"mypass");
-        //enter the value "mypass" in the Confirm Password field
-        enterText(By.id("ConfirmPassword"),"mypass");
-        //click on register button
-        clickElementBy(By.id("register-button"));
+        registration();
         String actualResult = driver.findElement(By.xpath("//div[@class='result']")).getText();
         //user should be able to see the message "Your registration completed" if successful
         String expectedResult = "Your registration completed";
@@ -85,38 +88,7 @@ public class AutomationTests {
 
     @Test(priority = 2) //registered user should be able to send email with product successfully
     public void registeredUserShouldBeAbleToSendEmailWithProductSuccessfully(){
-        //click on register button
-        clickElementBy(By.linkText("Register"));
-        //select the male gender option
-        clickElementBy(By.id("gender-male"));
-        //enter "MyFirstName" in First name field
-        enterText(By.id("FirstName"),"MyFirstName");
-        //enter "MySurname" in Last name field
-        enterText(By.id("LastName"),"MySurname");
-        //select the value "20" for Day field of Date of Birth
-        Select day = new Select(driver.findElement(By.name("DateOfBirthDay")));
-        day.selectByValue("20");
-        //select the value "May" for the Month field of Date of Birth
-        Select month = new Select(driver.findElement(By.name("DateOfBirthMonth")));
-        month.selectByIndex(5);
-        //select the value "1950" for the year field of Date of Birth
-        Select year = new Select(driver.findElement(By.name("DateOfBirthYear")));
-        year.selectByValue("1950");
-        DateFormat dateFormat = new SimpleDateFormat("DDMMYYYHHMMSS");
-        Date date = new Date();
-        String date1 = dateFormat.format(date);
-        //enter the value "Bhavin@home.com" in email field
-        driver.findElement(By.id("Email")).sendKeys("Bhavin+"+date1+"@home.com");
-        //enter the value "My Company" in the company field
-        enterText(By.id("Company"),"My Company");
-        //tick the Newsletter check box
-        selectBy(By.id("Newsletter"));
-        //enter the value "mypass" in the Password field
-        enterText(By.id("Password"),"mypass");
-        //enter the value "mypass" in the Confirm Password field
-        enterText(By.id("ConfirmPassword"),"mypass");
-        //click on register button
-        clickElementBy(By.id("register-button"));
+        registration();
         WebDriverWait wait = new WebDriverWait(driver,20);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Computers")));
         //click on Computers
@@ -166,38 +138,7 @@ public class AutomationTests {
 
     @Test (priority = 4) //user need to accept the T&C before checkout pop should be displayed
     public void userNeedToAcceptTermsAndConditionBeforeCheckOut(){
-        //click on register button
-        clickElementBy(By.linkText("Register"));
-        //select the male gender option
-        clickElementBy(By.id("gender-male"));
-        //enter "MyFirstName" in First name field
-        enterText(By.id("FirstName"),"MyFirstName");
-        //enter "MySurname" in Last name field
-        enterText(By.id("LastName"),"MySurname");
-        //select the value "20" for Day field of Date of Birth
-        Select day = new Select(driver.findElement(By.name("DateOfBirthDay")));
-        day.selectByValue("20");
-        //select the value "May" for the Month field of Date of Birth
-        Select month = new Select(driver.findElement(By.name("DateOfBirthMonth")));
-        month.selectByIndex(5);
-        //select the value "1950" for the year field of Date of Birth
-        Select year = new Select(driver.findElement(By.name("DateOfBirthYear")));
-        year.selectByValue("1950");
-        DateFormat dateFormat = new SimpleDateFormat("DDMMYYYHHMMSS");
-        Date date = new Date();
-        String date1 = dateFormat.format(date);
-        //enter the value "Bhavin@home.com" in email field
-        driver.findElement(By.id("Email")).sendKeys("Bhavin+"+date1+"@home.com");
-        //enter the value "My Company" in the company field
-        enterText(By.id("Company"),"My Company");
-        //tick the Newsletter check box
-        selectBy(By.id("Newsletter"));
-        //enter the value "mypass" in the Password field
-        enterText(By.id("Password"),"mypass");
-        //enter the value "mypass" in the Confirm Password field
-        enterText(By.id("ConfirmPassword"),"mypass");
-        //click on register button
-        clickElementBy(By.id("register-button"));
+        registration();
         WebDriverWait wait = new WebDriverWait(driver,20);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Computers")));
         //click on Computers
@@ -221,38 +162,7 @@ public class AutomationTests {
 
     @Test (priority = 5)  // registered user should be able to buy single product successfully
     public void registeredUserShouldBeAbleToBuyAnySingleProductSuccessfully(){
-        //click on register button
-        clickElementBy(By.linkText("Register"));
-        //select the male gender option
-        clickElementBy(By.id("gender-male"));
-        //enter "MyFirstName" in First name field
-        enterText(By.id("FirstName"),"MyFirstName");
-        //enter "MySurname" in Last name field
-        enterText(By.id("LastName"),"MySurname");
-        //select the value "20" for Day field of Date of Birth
-        Select day = new Select(driver.findElement(By.name("DateOfBirthDay")));
-        day.selectByValue("20");
-        //select the value "May" for the Month field of Date of Birth
-        Select month = new Select(driver.findElement(By.name("DateOfBirthMonth")));
-        month.selectByIndex(5);
-        //select the value "1950" for the year field of Date of Birth
-        Select year = new Select(driver.findElement(By.name("DateOfBirthYear")));
-        year.selectByValue("1950");
-        DateFormat dateFormat = new SimpleDateFormat("DDMMYYYHHMMSS");
-        Date date = new Date();
-        String date1 = dateFormat.format(date);
-        //enter the value "Bhavin@home.com" in email field
-        driver.findElement(By.id("Email")).sendKeys("Bhavin+"+date1+"@home.com");
-        //enter the value "My Company" in the company field
-        enterText(By.id("Company"),"My Company");
-        //tick the Newsletter check box
-        selectBy(By.id("Newsletter"));
-        //enter the value "mypass" in the Password field
-        enterText(By.id("Password"),"mypass");
-        //enter the value "mypass" in the Confirm Password field
-        enterText(By.id("ConfirmPassword"),"mypass");
-        //click on register button
-        clickElementBy(By.id("register-button"));
+        registration();
         WebDriverWait wait = new WebDriverWait(driver,20);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Computers")));
         //click on Computers
