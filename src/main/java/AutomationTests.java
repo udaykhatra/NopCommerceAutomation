@@ -242,7 +242,7 @@ public class AutomationTests {
         String lastProductPrice = driver.findElement(By.xpath("//div[@data-productid='7']/div[2]/div[3]/div/span")).getText();
         String firstPrice = firstProductPrice.substring(1).replace(",","");
         String lastPrice = lastProductPrice.substring(1).replace(",","");
-        Assert.assertTrue("Test case:Prices Loaded correctly",Float.parseFloat(firstPrice)>Float.parseFloat(lastPrice));
+        Assert.assertTrue("Test case:Prices Loaded Incorrectly",Float.parseFloat(firstPrice)>Float.parseFloat(lastPrice));
     }
 
 }
