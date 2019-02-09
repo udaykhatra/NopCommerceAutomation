@@ -26,6 +26,7 @@ public class AutomationTests {
     public void selectBy(By by){
         driver.findElement(by).isSelected();
     }
+
     public void registration(){
         //click on register button
         clickElementBy(By.linkText("Register"));
